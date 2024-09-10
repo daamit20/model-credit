@@ -13,7 +13,8 @@ def lee_csv(filename):
 def prepara_data(df):
     df_id = df["Id"]
     df.drop("Id", axis=1, inplace=True)
-    df = df.drop(df[(df["GrLivArea"] > 4000) & (df["SalePrice"] < 300000)].index)
+    if "SalePrice" in df.columns:
+        df = df.drop(df[(df["GrLivArea"] > 4000) & (df["SalePrice"] < 300000)].index)
     df["PoolQC"] = df["PoolQC"].fillna("None")
     df["MiscFeature"] = df["MiscFeature"].fillna("None")
     df["Alley"] = df["Alley"].fillna("None")
